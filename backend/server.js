@@ -12,7 +12,13 @@ const taskRoutes = require('./routes/taskRoutes');
 const app = express();
 
 // Middleware setup
-app.use(cors()); // To allow cross-origin requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3001'); // Allow this origin
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specific methods
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
+  next();
+});
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json()); // To parse JSON request bodies
 
 // MongoDB connection string for local MongoDB
@@ -33,5 +39,5 @@ app.use('/tasks', taskRoutes); // Use the task routes for all `/tasks` endpoints
 app.get("/", (req, res) => res.send("Server is running..."));
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,7 +1,7 @@
 // TaskService.js (Updated to pass searchQuery to API)
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/tasks';
+const API_URL = 'http://localhost:3000/tasks';
 
 // Updated getAllTasks function to accept searchQuery and pass it to the backend
 const getAllTasks = (searchQuery) => {
